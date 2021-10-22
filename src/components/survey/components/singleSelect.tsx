@@ -34,7 +34,7 @@ const SingleSelectBox: React.FunctionComponent<textInputProps> = ({
   const [modalVisible, setModalVisible] = useState(false);
   const renderOptions = () => {
     const list = item.options.map(item => {
-      return <Picker.Item label={item.value} value={item.key} />;
+      return <Picker.Item label={item.label} value={item.key} />;
     });
     return list;
   };
@@ -52,7 +52,7 @@ const SingleSelectBox: React.FunctionComponent<textInputProps> = ({
         <TouchableOpacity onPress={() => setModalVisible(true)}>
           <Text>
             {selectedValue.key
-              ? selectedValue.value
+              ? selectedValue.label
               : 'Please select an option..'}
           </Text>
         </TouchableOpacity>

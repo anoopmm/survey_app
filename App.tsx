@@ -12,6 +12,7 @@ import Survey from './src/components/survey';
 import HomeScreen from './src/screens/home';
 import SurveyScreen from './src/screens/survey';
 import NewSurveyScreen from './src/screens/newSurvey';
+import LoginScreen from './src/screens/login';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -19,7 +20,8 @@ const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={"Login"}>
+          <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Survey" component={SurveyScreen} />
           <Stack.Screen name="NewSurvey" component={NewSurveyScreen} />

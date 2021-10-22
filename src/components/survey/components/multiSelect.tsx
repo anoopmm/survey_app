@@ -12,7 +12,7 @@ const CustomCheckBox = ({checkBoxOptionItem, onValueChanged}) => {
         onValueChanged={onValueChanged}
         style={styles.checkbox}
       />
-      <Text style={styles.label}>{checkBoxOptionItem.value}</Text>
+      <Text style={styles.label}>{checkBoxOptionItem.label}</Text>
     </View>
   );
 };
