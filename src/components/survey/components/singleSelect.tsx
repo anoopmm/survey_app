@@ -19,6 +19,7 @@ interface textInputProps {
     question: String;
     qstnKey: String;
     isMandatory: Boolean;
+    options:Array;
   };
   submitStatus: boolean;
 }
@@ -39,8 +40,6 @@ const SingleSelectBox: React.FunctionComponent<textInputProps> = ({
     return list;
   };
   useEffect(() => {
-      console.log('vale------>',value,value?.[item.qstnKey]);
-      
     if (value) {
       setSelectedValue(value);
     }
@@ -66,7 +65,7 @@ const SingleSelectBox: React.FunctionComponent<textInputProps> = ({
             Alert.alert('Modal has been closed.');
             setModalVisible(!modalVisible);
           }}>
-          <View style={{backgroundColor: '#fff',padding:16}}>
+          <View style={{backgroundColor: '#A9C1FF',padding:16,margin:16,borderRadius:8}}>
             <Picker
               selectedValue={selectedValue.key}
               onValueChange={(itemValue, itemIndex) =>

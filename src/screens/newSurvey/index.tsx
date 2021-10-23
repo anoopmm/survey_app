@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import {
   Alert,
   Button,
-  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,7 +10,6 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
 import Modal from 'react-native-modal';
 import AddedQuestion from '../../components/addedQuestion';
 import RenderQuestionMaker from '../../components/questionMaker';
@@ -70,9 +68,9 @@ const NewSurvey: React.FunctionComponent<NewSurveyProps> = props => {
         let survey = {
           name: surveyName,
           questions: questions,
-          id:generateId(),
+          id: generateId(),
         };
-        console.log('survey',surveys)
+        console.log('survey', surveys);
         surveys.push(survey);
         try {
           await AsyncStorage.setItem('surveys', JSON.stringify(surveys));

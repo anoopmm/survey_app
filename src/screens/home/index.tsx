@@ -9,6 +9,7 @@ import {
   View,
 } from 'react-native';
 
+
 interface HomeProps {}
 
 const Home: React.FunctionComponent<HomeProps> = props => {
@@ -50,7 +51,6 @@ const Home: React.FunctionComponent<HomeProps> = props => {
           );
         }}
       />
-
       {user.type == 'admin' ? (
         <Button
           onPress={() =>

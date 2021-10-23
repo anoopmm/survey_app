@@ -1,12 +1,18 @@
 import React from 'react'
-import { View,Text } from 'react-native'
+import { View } from 'react-native'
 import MultiSelectBox from './multiSelect';
 import SingleSelectBox from './singleSelect';
-import styles from './styles';
 import TextInputBox from './textInputBox';
-
+interface item {
+    type:string;
+    qstnKey:string;
+}
 interface formWrapperProps {
-    
+    item:item;
+    onChange:Function;
+    formValue:Object;
+    submitStatus:Boolean;
+    index:Number;
 }
 
 const FormWrapper: React.FunctionComponent<formWrapperProps> = ({item,onChange,formValue,submitStatus,index}) => {

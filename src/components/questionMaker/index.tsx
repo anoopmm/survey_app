@@ -11,9 +11,11 @@ import {
 } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import RenderOptionsView from '../questionOptionGenerator';
+import CheckBox from './checkBox';
 import styles from './styles';
 const RenderQuestionMaker = ({addQuestion, cancel}) => {
   const [open, setOpen] = useState(false);
+  const [isMandatory, setisMandatory] = useState(false);
   const [options, setOptions] = useState([]);
   const [question, setQuestion] = useState('');
   const [value, setValue] = useState(null);
@@ -29,7 +31,7 @@ const RenderQuestionMaker = ({addQuestion, cancel}) => {
           const qstn = {
             type: value,
             question: question,
-            isMandatory: true,
+            isMandatory: isMandatory,
             qstnKey: null,
           };
           addQuestion(qstn);
@@ -72,6 +74,13 @@ const RenderQuestionMaker = ({addQuestion, cancel}) => {
           placeholder="Enter question here..."
           onChangeText={text => setQuestion(text)}
         />
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={styles.formLabel}>Is it mandatory? </Text>
+          <CheckBox
+            status={isMandatory}
+            onValueChanged={() => setisMandatory(!isMandatory)}
+          />
+        </View>
       </View>
       {value == 'multiple' || value == 'single' ? (
         <RenderOptionsView

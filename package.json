@@ -7,7 +7,10 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "apk": "cd android && ./gradlew clean && ./gradlew assembleRelease && mv ./app/build/outputs/apk/release ../../$(date +%Y-%m-%d-%H-%M-%S)",
+    "aab": "cd android && ./gradlew clean && ./gradlew bundleRelease && mv ./app/build/outputs/bundle/release ../../$(date +%Y-%m-%d-%H-%M-%S)",
+    "clean": "cd ios && xcodebuild clean && cd ../ && cd android && ./gradlew clean && cd ../"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.9",
@@ -16,10 +19,13 @@
     "@react-navigation/native-stack": "^6.2.5",
     "react": "17.0.2",
     "react-native": "0.66.0",
+    "react-native-chart-kit": "^6.11.0",
     "react-native-dropdown-picker": "^5.1.28",
     "react-native-modal": "^13.0.0",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.8.0"
+    "react-native-screens": "^3.8.0",
+    "react-native-svg": "^12.1.1",
+    "rn-survey": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -47,6 +53,10 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   }
 }

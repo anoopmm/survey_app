@@ -21,8 +21,6 @@ const TextInputBox: React.FunctionComponent<textInputProps> = ({
   value,
   submitStatus,
 }) => {
-    console.log('item.isMandatory',item.isMandatory);
-    
   return (
     <View style={styles.questionContainer}>
       <Text style={styles.label}>{index+1}. {item.question}</Text>

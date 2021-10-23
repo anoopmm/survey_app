@@ -55,7 +55,7 @@ const Login: React.FunctionComponent<LoginProps> = ({navigation}) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => loginWithUser('analytics')}>
+        onPress={() =>  navigation.navigate('Analytics')}>
         <Text style={styles.buttonLabel}>Login as Analytic User</Text>
       </TouchableOpacity>
     </View>

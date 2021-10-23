@@ -3,8 +3,6 @@ import {Text, TextInput, View, FlatList, Alert} from 'react-native';
 import CheckBox from './checkBox';
 import styles from './styles';
 const CustomCheckBox = ({checkBoxOptionItem, onValueChanged}) => {
-  console.log('checkBoxOptionItem', checkBoxOptionItem);
-
   return (
     <View style={styles.checkBoxContainer}>
       <CheckBox
@@ -39,8 +37,6 @@ const MultiSelectBox: React.FunctionComponent<MultiSelectBoxProps> = ({
   const [listValues, setListValue] = useState(item.options);
   useEffect(() => {
     const newOptions = item.options.map(option => {
-      console.log(option);
-      console.log(value);
       if (value) {
         for (let i = 0; i < value.length; i++) {
           if (option.key === value[i].key) {
@@ -50,7 +46,6 @@ const MultiSelectBox: React.FunctionComponent<MultiSelectBoxProps> = ({
             option.status = false;
           }
         }
-        console.log('option after', option);
         return option;
       } else {
         return option;
@@ -70,8 +65,6 @@ const MultiSelectBox: React.FunctionComponent<MultiSelectBoxProps> = ({
       setListValue(tempList);
     }
   };
-  console.log('listValues', listValues);
-
   return (
     <View style={styles.questionContainer}>
       <Text style={styles.label}>{index+1}. {item.question}</Text>

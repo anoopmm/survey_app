@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import Survey from '../../components/survey';
 
 interface SurveyProps {}
@@ -69,10 +70,47 @@ const SurveyScreen: React.FunctionComponent<SurveyProps> = props => {
       ],
     },
   ];
-  const submit = (value: any) => {
-    console.log('==============>', value);
-  };
   const {data, userName} = props.route.params;
+
+  const submit = async (value: any) => {
+    console.log('==============>', value);
+    if (value != 'error') {
+      let surveyResponses = [];
+      let response = {
+        id: data.id,
+        userName: userName,
+        response: value,
+      };
+      try {
+        const surveyFromLocal = await AsyncStorage.getItem('surveyResponse');
+        if (surveyFromLocal !== null) {
+          surveyResponses = JSON.parse(surveyFromLocal);
+          surveyResponses.push(response);
+          await AsyncStorage.setItem(
+            'surveyResponse',
+            JSON.stringify(surveyResponses),
+          );
+        } else {
+          surveyResponses.push(response);
+          try {
+            await AsyncStorage.setItem(
+              'surveyResponse',
+              JSON.stringify(surveyResponses),
+            );
+          } catch (e) {
+            // saving error
+          }
+        }
+      } catch (e) {
+        // error reading value
+      }
+
+      Alert.alert('Survey submitted successfully');
+      props.navigation.goBack();
+    } else {
+      Alert.alert('Please fill mandatory fields...')
+    }
+  };
   return (
     <View style={{flex: 1, padding: 8}}>
       <Survey

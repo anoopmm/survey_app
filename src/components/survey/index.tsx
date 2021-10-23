@@ -1,13 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, TouchableOpacity, View} from 'react-native';
+import {Alert, FlatList, Text, TouchableOpacity, View} from 'react-native';
 import FormWrapper from './components/formWrapper';
 import styles from './components/styles';
 
 interface SurveyProps {
   metaData: Array;
   onSubmit: Function;
-  formId: String;
+  formId: string;
 }
 
 const Survey: React.FunctionComponent<SurveyProps> = ({
@@ -25,9 +25,21 @@ const Survey: React.FunctionComponent<SurveyProps> = ({
     });
   };
   const submit = () => {
+    let error = false;
     setSubmitStatus(true);
-    onSubmit(formValue);
-    console.log('value', formValue);
+    metaData.forEach(element => {
+      if (element.isMandatory) {
+        if (!formValue[element.qstnKey]) {
+          error = true;
+          return;
+        }
+      }
+    });
+    if (error) {
+      onSubmit('error');
+    } else {
+      onSubmit(formValue);
+    }
   };
   const save = async () => {
     try {
